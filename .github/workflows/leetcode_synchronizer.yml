@@ -1,17 +1,18 @@
-name: LeetCode Synchronizer
+name: Sync Leetcode
 
 on:
-  workflow_dispatch: # Allows you to trigger this manually whenever you want
+  workflow_dispatch:
   schedule:
-    - cron: '0 0 * * *' # This will also run automatically every night at midnight!
+    - cron: '0 0 * * *'
 
 jobs:
   build:
     runs-on: ubuntu-latest
+
     steps:
-      - name: Run LeetCode Synchronizer
-        uses: dos-m0nk3y/LeetCode-Synchronizer@v1.1.0
+      - name: Sync
+        uses: joshcai/leetcode-sync@v1.0.5
         with:
-          GITHUB_TOKEN: ${{ github.token }}
-          LEETCODE_SESSION: ${{ secrets.LEETCODE_SESSION }}
-          LEETCODE_CSRF_TOKEN: ${{ secrets.LEETCODE_CSRF_TOKEN }}
+          github-token: ${{ github.token }}
+          leetcode-csrf-token: ${{ secrets.LEETCODE_CSRF_TOKEN }}
+          leetcode-session: ${{ secrets.LEETCODE_SESSION }}
